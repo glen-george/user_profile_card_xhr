@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <style>
+        body {
+            display: flex;
+            
+            min-height: 100vh;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+            background: #494545;
+
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile_card {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            background: #ffffff;
+            overflow: hidden;
+        }
+
+        .profile_card img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+        }
+
+        .card_content {
+            padding: 22px;
+
+        }
+
+        .labels {
+            font-size: 15px;
+            font-weight: 600;
+            margin-right: 20px;
+            color: #6b7280;
+            min-width: 100px;
+        }
+
+        h4 {
+            color: #353a41;
+            font-size: 18px;
+        }
+        @media(max-width:576px){
+
+    .profile_card{
+        max-width: 100%;
+    }
+
+    .profile_card img{
+        height: 200px;
+    }
+
+    .card_content{
+        padding: 15px;
+    }
+
+    .labels{
+        min-width: 85px;
+        font-size: 14px;
+    }
+
+    h4{
+        font-size: 15px;
+    }
+
+    h1{
+        font-size: 24px;
+    }
+
+    button{
+        width: 100%;
+    }
+}
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1 class="text-center mt-4 text-white">User Profile Details</h1>
+        <div class="profile_card " id="result">
+
+            <img id="user_image" src="" alt="user-profile">
+
+            <div class="card_content">
+
+                <div class="d-flex gap-2 align-items-center">
+                    <label class="labels">Name :</label>
+                    <h4 id="userName"></h4>
+
+                </div>
+
+                <div class="d-flex gap-2 align-items-center">
+                    <label class="labels">Age :</label>
+                    <h4 id="userAge"></h4>
+                </div>
+
+                <div class="d-flex gap-2 align-items-center">
+                    <label class="labels">Gender :</label>
+                    <h4 id="userGender"></h4>
+                </div>
+
+
+                <div class="d-flex gap-2 align-items-center">
+                    <label class="labels">Email :</label>
+                    <h4 id="userEmail"></h4>
+                </div>
+
+                <div class="d-flex gap-2 align-items-center">
+                    <label class="labels">Phone No :</label>
+                    <h4 id="userPhone"></h4>
+                </div>
+
+
+                <div class="d-flex gap-2 align-items-center">
+                    <label class="labels">Blood Group :</label>
+                    <h4 id="userBlood"></h4>
+                </div>
+
+                <button class="btn btn-primary mt-4" onclick="nextUser()">Next User</button>
+            </div>
+
+
+        </div>
+    </div>
+</body>
+
+<script>
+    let allUsers = []
+
+    const userprofile = new XMLHttpRequest()
+
+    userprofile.open("GET", "https://dummyjson.com/users")
+
+    userprofile.send()
+
+    userprofile.onreadystatechange = () => {
+
+        if (userprofile.readyState == 4 && userprofile.status == 200) {
+            // console.log(userprofile.responseText);
+            const data = JSON.parse(userprofile.responseText)
+            allUsers = data.users
+            console.log(allUsers);
+            showUser()
+        }
+    }
+
+    function showUser() {
+        let randomIndex = Math.floor(Math.random() * allUsers.length)
+        let user = allUsers[randomIndex]
+
+
+        document.getElementById("user_image").src = user.image
+        document.getElementById("userName").innerHTML = `${user.firstName} ${user.lastName}`
+        document.getElementById("userAge").innerHTML = user.age
+        document.getElementById("userGender").innerHTML = user.gender
+        document.getElementById("userEmail").innerHTML = user.email
+        document.getElementById("userPhone").innerHTML = user.phone
+        document.getElementById("userBlood").innerHTML = user.bloodGroup
+
+    }
+
+
+
+    function nextUser() {
+        showUser()
+    }
+
+
+
+
+
+
+
+    //         users.forEach((user, index) => {
+
+    //     result.innerHTML += `<div class="profile_card" id="result">
+    //     <img src=${user.image} alt="user-profile">
+    //     <div class="card_content" >
+    //         <div class="d-flex gap-2 align-items-center">
+    //             <label class="labels" >Name :</label>
+    //             <h4 >${user.firstName} </h4>
+    //              <h4 > ${user.lastName}</h4>
+    //         </div>
+
+    //         <div class="d-flex gap-2 align-items-center">
+    //             <label class="labels" >Age :</label>
+    //              <h4>${user.age}</h4>
+    //         </div>
+
+    //         <div class="d-flex gap-2 align-items-center">
+    //             <label class="labels" >Gender :</label>
+    //              <h4>${user.gender}</h4>
+    //         </div>
+
+
+    //         <div class="d-flex gap-2 align-items-center">
+    //             <label class="labels" >Email :</label>
+    //              <h4>${user.email}</h4>
+    //         </div>
+
+    //         <div class="d-flex gap-2 align-items-center">
+    //             <label class="labels" >Phone No :</label>
+    //              <h4>${user.phone}</h4>
+    //         </div>
+
+
+    //         <div class="d-flex gap-2 align-items-center">
+    //             <label class="labels" >Blood Group :</label>
+    //              <h4>${user.bloodGroup}</h4>
+    //         </div>
+
+    //         <button class="btn btn-primary mt-4">Next User</button>
+    //     </div>
+
+
+    // </div>`
+
+    //         })
+
+
+
+
+
+    //     } else {
+    //         console.log(`API call failed`);
+
+    //     }
+    // }
+
+
+</script>
+
+</html>

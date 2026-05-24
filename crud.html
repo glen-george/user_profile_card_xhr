@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container  mt-5">
+        <h1 class="text-center">CRUD APP</h1>
+
+
+
+        <div class="mt-5 ">
+            <form id="userForm" class="d-flex justify-content-between gap-2">
+                <input id="editIndex" type="hidden">
+                <input id="name" type="text" placeholder="Enter name" class="form-control">
+                <input id="email" type="text" placeholder="Enter gmail" class="form-control">
+                <button type="submit" class="btn btn-lg btn-primary ">Add Data</button>
+            </form>
+
+            <table class="table mt-4">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+
+
+
+        </div>
+    </div>
+
+</body>
+
+<script>
+    let users = []
+    let editIndex = ""
+    // form 
+    const form = document.getElementById("userForm")
+
+    // tablebody
+    const tableBody = document.getElementById("tableBody")
+    //  edit input index
+    const editIndexInput = document.getElementById("editIndex")
+
+
+    if (sessionStorage.getItem("users")) {
+        users = JSON.parse(sessionStorage.getItem("users"))
+        displayuser()
+    } else {
+        users[editIndexInput.value] = { name, email }
+        editIndexInput.value = ""
+    }
+
+
+
+    // add
+
+    form.addEventListener("submit", (e) => {
+        e.preventDefault()
+
+        // get input values
+        const name = document.getElementById("name").value
+        const email = document.getElementById("email").value
+
+        if (editIndexInput.value == "") {
+            // add name and gmail to user
+            users.push({ name, email })
+
+        } else {
+            users[editIndexInput.value] = { name, email }
+            editIndexInput.value = ""
+        }
+        sessionStorage.setItem("users", JSON.stringify(users));
+
+        form.reset()
+        console.log(users);
+        displayuser()
+
+
+
+
+
+
+
+
+    })
+    //    get
+    function displayuser() {
+        tableBody.innerHTML = ""
+        users.forEach((user, index) => {
+            tableBody.innerHTML +=
+
+
+
+                `<tr>
+                    <td>${index + 1}</td>
+                    <td>${user.name}</td>
+                    <td>${user.email}</td>
+                    <td class="d-flex gap-2">
+                            <button onClick="editUser(${index})" type="button" class="btn btn-warning">Edit</button>
+                            <button onClick="deleteUser(${index})" type="button" class="btn btn-danger">Delete</button>
+                        </td>
+                </tr>`
+        })
+    }
+    // update
+
+    const editUser = (index) => {
+        document.getElementById("name").value = users[index].name
+        document.getElementById("email").value = users[index].email
+        editIndexInput.value = index
+        console.log(editIndex);
+
+    }
+
+    // delete
+
+    const deleteUser = (index) => {
+        if (confirm`Are you sure ,Do you want to delete the User!!`) {
+            users.splice(index, 1)
+            sessionStorage.setItem("users", JSON.stringify(users))
+            displayuser()
+        }
+
+    }
+
+
+
+
+
+
+</script>
+
+</html>

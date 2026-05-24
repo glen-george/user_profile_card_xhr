@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculator</title>
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</head>
+<body class="bg-dark d-flex justify-content-center align-items-center vh-100">
+<div class="card bg-secondary p-4  shadow-lg "style="width: 400px;">
+    <!-- Display -->
+     <input readonly id="result" class="bg-dark form-control text-white text-end mb-4 py-4 fs-2">
+        
+
+    <div class="container-fluid">
+        <div class="row g-3">
+            <div class="col-3"><button class="btn btn-danger  w-100 py-3 fs-3" onclick="CalcuDispClear()">AC</button></div>
+            <div class="col-3"><button class="btn btn-danger  w-100 py-3 fs-3" onclick="deleCalcuDisp()">C</button></div>
+            <div class="col-3"><button class="btn btn-warning  w-100 py-3 fs-3"onclick="CalcuDisp(`*`)">*</button></div>
+            <div class="col-3"><button class="btn btn-warning  w-100 py-3 fs-3"onclick="CalcuDisp(`-`)">-</button></div>
+
+            <div class="col-3"><button class="btn btn-dark  w-100 py-3 fs-3" onclick="CalcuDisp(`7`)">7</button></div>
+            <div class="col-3"><button class="btn btn-dark  w-100 py-3 fs-3" onclick="CalcuDisp(`8`)">8</button></div>
+            <div class="col-3"><button class="btn btn-dark  w-100 py-3 fs-3" onclick="CalcuDisp(`9`)">9</button></div>
+            <div class="col-3"><button class="btn btn-warning  w-100 py-3 fs-3"onclick="CalcuDisp(`/`)" >/</button></div>
+
+            <div class="col-3"><button class="btn btn-dark  w-100 py-3 fs-3"onclick="CalcuDisp(`4`)">4</button></div>
+            <div class="col-3"><button class="btn btn-dark  w-100 py-3 fs-3"onclick="CalcuDisp(`5`)">5</button></div>
+            <div class="col-3"><button class="btn btn-dark  w-100 py-3 fs-3"onclick="CalcuDisp(`6`)">6</button></div>
+            
+            
+             <div class="col-3"><button class="btn btn-warning  w-100 py-3 fs-3"onclick="CalcuDisp(`+`)">+</button></div>
+             <div class="col-3"><button class="btn btn-dark  w-100 py-3 fs-3"onclick="CalcuDisp(`1`)">1</button></div>
+            <div class="col-3"><button class="btn btn-dark  w-100 py-3 fs-3"onclick="CalcuDisp(`2`)">2</button></div>
+            <div class="col-3"><button class="btn btn-dark  w-100 py-3 fs-3"onclick="CalcuDisp(`3`)">3</button></div>
+            <div class="col-3"><button class="btn btn-dark  w-100 py-3 fs-3"onclick="CalcuDisp(`.`)">.</button></div>
+             
+            
+            
+
+            <div class="col-6"><button class="btn btn-dark  w-100 py-3 fs-3"onclick="CalcuDisp(`0`)">0</button></div>
+            <div class="col-3"><button class="btn btn-dark  w-100 py-3 fs-3"onclick="CalcuDisp(`00`)">00</button></div>
+            <div class="col-3"><button class="btn btn-success  w-100 py-3 fs-3" onclick="CalcuResult()">=</button></div>
+        </div>
+    </div>
+
+
+</div>    
+
+
+
+
+</body>
+
+<script>
+    // display content in screen 
+    const CalcuDisp = (content)=>{
+     result.value += content
+    }
+
+
+    const CalcuDispClear = ()=>{
+        result.value = ""
+    }
+    const deleCalcuDisp = ()=>{
+        result.value = result.value.slice(0,-1)
+    }
+
+    const CalcuResult = ()=>{
+        try {
+             result.value = eval(result.value)
+        } catch (error) {
+            result.value = "Error!!"
+            console.log(error);
+            
+        }
+       
+    }
+</script>
+</html>

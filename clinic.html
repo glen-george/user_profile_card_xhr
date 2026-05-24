@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Clinic Patient Register</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
+    }
+
+    body{
+      background:#f4f7fb;
+      padding:30px;
+    }
+
+    .container{
+      max-width:900px;
+      margin:auto;
+      background:white;
+      padding:25px;
+      border-radius:10px;
+      box-shadow:0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h1{
+      text-align:center;
+      margin-bottom:20px;
+      color:#333;
+    }
+
+    .form-group{
+      margin-bottom:15px;
+    }
+
+    label{
+      display:block;
+      margin-bottom:5px;
+      font-weight:bold;
+    }
+
+    input{
+      width:100%;
+      padding:10px;
+      border:1px solid #ccc;
+      border-radius:5px;
+    }
+
+    button{
+      padding:10px 15px;
+      border:none;
+      border-radius:5px;
+      cursor:pointer;
+      font-weight:bold;
+    }
+
+    .add-btn{
+      background:#28a745;
+      color:white;
+      width:100%;
+      margin-top:10px;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:25px;
+    }
+
+    table th, table td{
+      border:1px solid #ddd;
+      padding:12px;
+      text-align:center;
+    }
+
+    table th{
+      background:#007bff;
+      color:white;
+    }
+
+    .edit{
+      background:orange;
+      color:white;
+      margin-right:5px;
+    }
+
+    .delete{
+      background:red;
+      color:white;
+    }
+
+    .no-data{
+      text-align:center;
+      margin-top:20px;
+      color:gray;
+    }
+  </style>
+</head>
+
+
+
+<body>
+
+  <div class="container">
+    <h1>Clinic Patient Register</h1>
+
+
+
+    <div class="form-group">
+      <label>Patient Name</label>
+      <input type="text" id="name" placeholder="Enter patient name">
+    </div>
+
+    <div class="form-group">
+      <label>Age</label>
+      <input type="number" id="age" placeholder="Enter age">
+    </div>
+
+    <div class="form-group">
+      <label>Disease</label>
+      <input type="text" id="disease" placeholder="Enter disease">
+    </div>
+
+    <div class="form-group">
+      <label>Appointment Date</label>
+      <input type="date" id="date">
+    </div>
+
+    <button class="add-btn" id="addBtn">Add Patient</button>
+
+    <table id="patientTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Disease</th>
+          <th>Appointment</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody id="tableBody">
+      </tbody>
+    </table>
+
+    <p class="no-data" id="noData">No patient records added.</p>
+
+  </div>
+
+  <script>
+
+    const nameInput = document.getElementById("name");
+    const ageInput = document.getElementById("age");
+    const diseaseInput = document.getElementById("disease");
+    const dateInput = document.getElementById("date");
+
+    const addBtn = document.getElementById("addBtn");
+    const tableBody = document.getElementById("tableBody");
+    const noData = document.getElementById("noData");
+
+    let patients = [];
+    let editIndex = -1;
+
+    function displayPatients() {
+
+      tableBody.innerHTML = "";
+
+      if (patients.length === 0) {
+        noData.style.display = "block";
+      } else {
+        noData.style.display = "none";
+      }
+
+      patients.forEach((patient, index) => {
+
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+          <td>${patient.name}</td>
+          <td>${patient.age}</td>
+          <td>${patient.disease}</td>
+          <td>${patient.date}</td>
+          <td>
+            <button class="edit" onclick="editPatient(${index})">Edit</button>
+            <button class="delete" onclick="deletePatient(${index})">Delete</button>
+          </td>
+        `;
+
+        tableBody.appendChild(row);
+      });
+    }
+
+    addBtn.addEventListener("click", () => {
+
+      const name = nameInput.value.trim();
+      const age = ageInput.value.trim();
+      const disease = diseaseInput.value.trim();
+      const date = dateInput.value;
+
+      if(name === "" || age === "" || disease === "" || date === ""){
+        alert("Please fill all fields");
+        return;
+      }
+
+      const patientData = {
+        name,
+        age,
+        disease,
+        date
+      };
+
+      if(editIndex === -1){
+        patients.push(patientData);
+      } else {
+        patients[editIndex] = patientData;
+        editIndex = -1;
+        addBtn.textContent = "Add Patient";
+      }
+
+      clearForm();
+      displayPatients();
+    });
+
+    function editPatient(index){
+
+      const patient = patients[index];
+
+      nameInput.value = patient.name;
+      ageInput.value = patient.age;
+      diseaseInput.value = patient.disease;
+      dateInput.value = patient.date;
+
+      editIndex = index;
+
+      addBtn.textContent = "Update Patient";
+    }
+
+    function deletePatient(index){
+
+      const confirmDelete = confirm("Are you sure you want to delete this patient record?");
+
+      if(confirmDelete){
+        patients.splice(index, 1);
+        displayPatients();
+      }
+    }
+
+    function clearForm(){
+      nameInput.value = "";
+      ageInput.value = "";
+      diseaseInput.value = "";
+      dateInput.value = "";
+    }
+
+  </script>
+
+</body>
+</html>

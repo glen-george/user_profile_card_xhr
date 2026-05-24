@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinic Patient Register</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+    <style>
+
+
+
+body {
+    background-color: #f6faff;
+    padding-top: 90px;
+}
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            filter: brightness(0) saturate(100%) invert(17%) sepia(30%) saturate(1467%) hue-rotate(182deg) brightness(94%) contrast(92%);
+        }
+
+
+
+        
+       .carousel_text {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    width: 40%;
+}
+
+
+@media (max-width: 768px) {
+
+    .navbar {
+        padding: 6px 0 !important;
+    }
+
+    .navbar h4 {
+        font-size: 18px;
+    }
+
+    .navbar-brand {
+        font-size: 16px;
+    }
+}
+        
+
+@media (max-width: 768px) {
+    .carousel_text {
+        width: 90%;
+        left: 5%;
+    }
+}
+
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            background: #f47c2c;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-box i {
+            color: white;
+            font-size: 24px;
+        }
+
+        h5 {
+            font-size: 16px;
+        }
+
+
+.cards-section {
+    width: 95%;
+     margin-top: -80px;
+    position: relative;
+    z-index: 10;
+}
+
+@media (max-width: 768px) {
+    .cards-section {
+        margin-top: 20px;
+        width: 100%;
+    }
+}
+
+.carousel-item img {
+    height: 650px;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .carousel-item img {
+        height: 300px;
+    }
+}
+
+@media (max-width: 576px) {
+    .carousel-item img {
+        height: 250px;
+    }
+}
+
+
+
+        @media (max-width: 768px) {
+
+   
+    .navbar-brand {
+        margin-left: 10px !important;
+        font-size: 18px;
+    }
+
+    .navbar h2 {
+        position: static !important;
+        transform: none !important;
+        text-align: center;
+        width: 100%;
+        margin-top: 10px !important;
+        font-size: 20px;
+    }
+
+  
+    .carousel-item img {
+        height: 300px;
+        object-fit: cover;
+    }
+
+    
+    .carousel_text {
+        top: 50%;
+        left: 5%;
+        width: 90%;
+    }
+
+    .carousel_text p {
+        font-size: 14px !important;
+    }
+
+    .carousel_text h1 {
+        font-size: 24px !important;
+    }
+
+  
+    .container.position-absolute {
+        position: static !important;
+        transform: none !important;
+        margin-top: 20px;
+    }
+
+    .icon-box {
+        width: 45px;
+        height: 45px;
+    }
+
+    .icon-box i {
+        font-size: 18px;
+    }
+
+    h5 {
+        font-size: 13px;
+    }
+
+  
+    form {
+        padding: 15px !important;
+    }
+
+   
+    table {
+        font-size: 13px;
+    }
+
+    .btn {
+        font-size: 13px;
+    }
+
+  
+    #check_up {
+        margin-top: 20px;
+        font-size: 28px;
+    }
+}
+
+
+
+@media (max-width: 576px) {
+
+    .carousel-item img {
+        height: 250px;
+    }
+
+    .carousel_text h1 {
+        font-size: 20px !important;
+    }
+
+    .carousel_text p {
+        font-size: 12px !important;
+    }
+
+    .row.text-center .col-6 {
+        padding: 15px 10px;
+    }
+
+    h5 {
+        font-size: 11px;
+    }
+}
+    </style>
+
+
+</head>
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg py-4 fixed-top navbar-dark  " style="background-color: #17325b;">
+    <div class="container-fluid position-relative">
+        <a class="navbar-brand text-white  ms-5 fw-bold" href="#">Smart-OP</a>
+
+        <h4 class=" text-white position-absolute start-50 translate-middle-x m-0">MedCity</h4>
+
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+        </div>
+    </div>
+</nav>
+
+
+
+<!-- carousel section -->
+<body >
+    <div id="carouselExample" class="position-relative  carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+
+
+        <div class="carousel-inner">
+
+            <div class="carousel-item active">
+                <img src="https://www.renaimedicity.org/wp-content/uploads/2021/03/ezgif.com-gif-maker-16.webp"
+                    class="d-block w-100" alt="...">
+                <div class="carousel_text">
+                    <p style="color: #F67030; font-size:20px; font-weight: 600;  "><i>Together we shall</i></p>
+                    <h1 style="color: #17325b;">Realise wellness all around</h1>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <img src="https://www.renaimedicity.org/wp-content/uploads/2021/03/ezgif.com-gif-maker-17.webp"
+                    class="d-block w-100" alt="...">
+                <div class="carousel_text">
+                    <p style="color: #F67030; font-size:20px; font-weight: 600;  "><i>Come Closer</i></p>
+                    <h1 style="color: #17325b;">To a beautiful Life</h1>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://www.renaimedicity.org/wp-content/uploads/2021/03/ezgif.com-gif-maker-19.webp"
+                    class="d-block w-100" alt="...">
+                <div class="carousel_text">
+                    <p style="color: #F67030; font-size:20px; font-weight: 600; "><i>Together we shall</i></p>
+                    <h1 style="color: #17325b;">Realise wellness all around</h1>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+<!-- Cards section -->
+    <div class="container cards-section mt-n5 position-relative" style="z-index: 10;">
+
+        <div class="row text-center shadow">
+
+            <div class="col-md-3 col-6 border bg-light py-4 d-flex align-items-center justify-content-center gap-3">
+                <div class="icon-box">
+                    <i class="bi bi-person-heart"></i>
+                </div>
+                <a href="https://www.renaimedicity.org/doctors/" target="_blank" style="text-decoration: none;">
+                    <h5 class="m-0 fw-bold">FIND A DOCTOR</h5>
+                </a>
+            </div>
+
+
+            <div class="col-md-3 col-6 border bg-light py-4 d-flex align-items-center justify-content-center gap-3">
+                <div class="icon-box">
+                    <i class="bi bi-calendar-check"></i>
+                </div>
+                <a href="https://www.renaimedicity.org/book-an-appointment/"  style="text-decoration: none;">
+                    <h5 class="m-0 fw-bold">REQUEST AN APPOINTMENT</h5>
+                </a>
+            </div>
+
+            <div class="col-md-3 col-6 border bg-light py-4 d-flex align-items-center justify-content-center gap-3">
+                <div class="icon-box">
+                    <i class="bi bi-heart-pulse"></i>
+                </div>
+                <a href="#check_up" style="text-decoration: none;">
+                    <h5 class="m-0 fw-bold">HEALTH CHECK UP</h5>
+                </a>
+            </div>
+
+            <div class="col-md-3 col-6 border bg-light py-4 d-flex align-items-center justify-content-center gap-3">
+                <div class="icon-box">
+                    <i class="bi bi-hospital"></i>
+                </div>
+                <a href="#" style="text-decoration: none;">
+                    <h5 class="m-0 fw-bold">OUR DEPARTMENTS</h5>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+    </div>
+
+
+    <div class="container mt-5">
+        <h1 class="text-center mb-4 display-6 fw-bold " id="check_up">Clinic Patient Register </h1>
+
+
+        <form id="userForm" action="" class="border p-4 rounded shadow w-100 mx-auto bg-light">
+            <input type="hidden" id="editIndex">
+            <label><b>Patient Name</b></label>
+            <input id="name" type="text" placeholder="Enter Patient Name " class="form-control mt-2">
+            <br>
+            <label><b>Age</b></label>
+            <input id="age" type="number" placeholder="Enter age" class="form-control  mt-2">
+            <br>
+            <label><b>Disease</b></label>
+            <input id="disease" type="text" placeholder="Enter disease" class="form-control  mt-2">
+            <br>
+            <label><b>Appointment Date</b></label>
+            <input id="date" type="date" class="form-control  mt-2">
+            <br>
+            <button id="submit_btn" type="submit" class="btn btn-success text-white w-100 fw-bold">Add Patient</button>
+            <br>
+            <br>
+
+
+            <div class="table-responsive">
+                <h2 style="font-size: 18px ; color: cccccc;">Search patients</h2>
+                <div class="row mb-4">
+
+                    <div class="col-md-8  mb-2">
+                        <input id="filterDisease" type="text" placeholder="Search Patients(by Disease)"
+                            class="form-control">
+                    </div>
+                    <div class="col-md-4 mb-2 d-grid">
+                        <button type="button" class="btn btn-primary" onclick="filterPatients()">Filter</button>
+                    </div>
+
+
+                </div>
+
+
+                <table class="table">
+                    <thead class="table-primary ">
+                        <tr>
+
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Disease</th>
+                            <th>Appoinment</th>
+                            <th>Actions</th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody id="tableBody">
+
+
+                    </tbody>
+
+                </table>
+            </div>
+
+
+            <p class="text-center mt-5 ">No patient records added</p>
+        </form>
+    </div>
+
+
+
+
+
+</body>
+
+
+<script>
+
+
+
+    let patients = []
+    const form = document.getElementById("userForm")
+
+    const tableBody = document.getElementById("tableBody")
+
+    const editIndexInput = document.getElementById("editIndex")
+    const submit_btn = document.getElementById("submit_btn")
+
+    if (sessionStorage.getItem("patients")) {
+        patients = JSON.parse(sessionStorage.getItem("patients"))
+        displayPatients()
+    }else{
+        patients[editIndexInput.value]={name,age,disease,value,date}
+        editIndexInput.value= ""
+    }
+
+
+
+
+
+    form.addEventListener("submit", (e) => {
+        e.preventDefault()
+
+        const name = document.getElementById("name").value
+        const age = document.getElementById("age").value
+        const disease = document.getElementById("disease").value
+        const date = document.getElementById("date").value
+
+
+        if (editIndexInput.value == "") {
+            patients.push({ name, age, disease, date })
+        } else {
+            patients[editIndexInput.value] = { name, age, disease, date }
+            editIndexInput.value = "";
+        }
+
+        sessionStorage.setItem("patients", JSON.stringify(patients))
+
+        form.reset()
+        console.log(patients);
+        editIndexInput.value = ""
+        submit_btn.innerText = "Add Patient"
+
+        displayPatients()
+
+    })
+
+
+
+
+    function filterPatients() {
+        const filterValue = document.getElementById("filterDisease").value.toLowerCase()
+        const filterPatients = patients.filter((patient) => {
+            return patient.disease.toLowerCase().includes(filterValue)
+
+        })
+
+        displayPatients(filterPatients)
+    }
+
+    // get 
+    function displayPatients(data = patients) {
+
+        tableBody.innerHTML = ""
+        data.forEach((user, index) => {
+            tableBody.innerHTML += `<tr class="align-items-center">
+       
+                        <td>${user.name}</td>
+                        <td>${user.age}</td>
+                        <td>${user.disease}</td>
+                        <td>${user.date}</td>
+                        <td>
+                            <div class="d-flex flex-column flex-md-row gap-2">
+                                <button class="btn  btn-warning"  onClick="editPatient(${index})"   type="button" >Edit</button>
+                                <button type="button" class="btn btn-danger"onClick="deletePatient(${index})" >Delete</button>
+                            </div>
+                        </td>
+
+                    </tr>`
+        })
+
+    }
+
+
+
+    function editPatient(index) {
+        document.getElementById("name").value = patients[index].name
+        document.getElementById("age").value = patients[index].age
+        document.getElementById("disease").value = patients[index].disease
+        document.getElementById("date").value = patients[index].date
+        editIndexInput.value = index;
+        submit_btn.innerText = "Update Patient"
+        console.log(editIndexInput.value);
+
+    }
+
+
+
+
+    function deletePatient(index) {
+        if (confirm("Are you sure !! you wanrt to delete this patient")) {
+            patients.splice(index, 1)
+
+            sessionStorage.setItem("patients", JSON.stringify(patients))
+            displayPatients()
+        }
+
+    }
+
+
+</script>
+
+</html>

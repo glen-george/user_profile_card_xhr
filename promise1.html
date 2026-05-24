@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container    d-flex justify-content-center align-items-center flex-column my-4" style="height: 80vh ; ">
+        <h1>Lottery Prediction</h1>
+        <div class="p-5  my-5 border rounded bg-warning ">
+            <h1 id="result" class="text-white text-center">Lottery Status</h1>
+        </div>
+
+    </div>
+</body>
+<script>
+    let promise = new Promise((resolve, reject) => {
+        let myTicketNo = 2;
+        let winnerLotteryTicket = Math.floor(Math.random() * 5) + 1
+        // console.log(winnerLotteryTicket);
+        if (myTicketNo == winnerLotteryTicket) {
+            resolve(`Congrats YOU have Won the Ticket`)
+
+        } else {
+            reject(`Better luck Next Time!!`);
+
+        }
+
+
+    })
+
+  promise.then((value)=>result.innerHTML= value).catch((reason)=>result.innerHTML = reason)
+</script>
+
+</html>
